@@ -1,7 +1,7 @@
 #!/bin/bash 
-# Setup, v0.0.2
+# Setup, v0.0.3
 
-flynt="1.0.0"
+flynt="1.1.1"
 current=$PWD
 themes="../wp-content/themes"
 vhost=`cat ../../.docksal/docksal.env | grep '#VIRTUAL_HOST' | cut -f 2 -d '='`
@@ -32,6 +32,10 @@ echo -e "${blue}Install composer" &&
 resetColor &&
 composer install &&
 wp theme activate --allow-root flynt &&
+echo -e "${blue}Install node modules"
+resetColor
+echo "npm install"
+npm install &&
 echo -e "${blue}Update flynt host file" &&
 resetColor &&
 echo "sed -i 's/flynt-components.local.blee.ch/$vhost/g'"
